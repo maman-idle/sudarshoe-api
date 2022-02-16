@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from . models import Account
+from django.contrib.auth import authenticate
+
 
 class AccountSerializers(serializers.ModelSerializer):
     class Meta:
@@ -25,3 +27,16 @@ class SignupSerializers(serializers.ModelSerializer):
             validated_data['address']
         )
         return account
+
+class LoginSerializers(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+    def validate(self, attrs):
+        account = authenticate(**attrs)
+
+        if account and account.is_active:
+            return account
+        else:
+            raise serializers.ValidationError("Wrong email/password.")
+        

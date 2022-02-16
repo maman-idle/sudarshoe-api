@@ -63,4 +63,3 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self) -> str:
         return self.name
-

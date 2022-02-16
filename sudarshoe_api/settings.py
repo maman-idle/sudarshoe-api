@@ -35,7 +35,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     'corsheaders',
-    'fcm_django'
+    'fcm_django',
+
+    'cloudinary_storage',
+    'cloudinary'
 ]
 
 AUTH_USER_MODEL = 'accounts.Account'
@@ -61,6 +64,16 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config("CLOUD_NAME"),
+    'API_KEY': config("API_KEY"),
+    'API_SECRET': config("API_SECRET")
+}
+
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
 
 ROOT_URLCONF = 'sudarshoe_api.urls'
 
@@ -138,6 +151,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+
+#Media URL
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 prod_db = dj_database_url.config(conn_max_age=500)
