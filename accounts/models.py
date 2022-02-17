@@ -47,7 +47,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=255, blank=False)
     name = models.CharField(max_length=255, blank=False)
     phone = models.CharField(max_length=100, blank=False)
-    address = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, blank=True, default="")
 
     # Required fields for custom user model
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -58,7 +58,9 @@ class Account(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['password', 'name', 'phone']
+
+    #You need to put 'address' even though it's optional, so that the command line can input the default value for it.
+    REQUIRED_FIELDS = ['password', 'name', 'phone', 'address']
     objects = AccountManager()
 
     def __str__(self) -> str:

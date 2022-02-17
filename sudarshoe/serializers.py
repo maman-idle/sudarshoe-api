@@ -5,9 +5,10 @@ from .models import *
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model=Product
-        fields=('name','image','price','material','weight','size','stock','description')
+        fields='__all__'
+
 
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Product
+        model=Transaction
         fields=('customer','product','date','trans_status','payment_method','pay_status')

@@ -1,7 +1,10 @@
 from rest_framework import routers
 from .views import *
+from django.urls import path
 
-urlpatterns = []
+urlpatterns = [
+    path('shoes/', ShoesList, name='shoes-list')
+]
 
 productRouter = routers.DefaultRouter()
 transRouter = routers.DefaultRouter()
@@ -11,3 +14,4 @@ transRouter.register('transaction', TransactionViewset, basename='transaction')
 
 urlpatterns += productRouter.urls
 urlpatterns += transRouter.urls
+
