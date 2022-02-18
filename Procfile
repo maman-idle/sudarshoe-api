@@ -1,0 +1,1 @@
+web: gunicorn sudarshoe_api.wsgi

@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', include('sudarshoe.urls-overview')),
+    path('admin/', admin.site.urls),    
     path('api/account/', include('accounts.urls')),
     path('api/sudarshoes/', include('sudarshoe.urls'))
 ]

@@ -3,7 +3,8 @@ from .views import *
 from django.urls import path
 
 urlpatterns = [
-    path('shoes/', ShoesList, name='shoes-list')
+    path('shoes/', ShoesList, name='shoes-list'),
+    path('transaction-list/', TransListView.as_view())
 ]
 
 productRouter = routers.DefaultRouter()
